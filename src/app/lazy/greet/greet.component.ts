@@ -1,5 +1,6 @@
-import {Component, EventEmitter, Input, NgModule, OnInit, Output} from '@angular/core';
+import {Component, ComponentFactoryResolver, EventEmitter, Input, NgModule, OnInit, Output, ViewContainerRef} from '@angular/core';
 import {FormsModule} from '@angular/forms';
+import {FirstChildComponent} from './first-child/first-child.component';
 
 @Component({
   selector: 'app-greet',
@@ -13,10 +14,23 @@ export class GreetComponent implements OnInit {
 
   message: string;
 
-  constructor() {
+  constructor(
+    private vcref: ViewContainerRef,
+    private cfr: ComponentFactoryResolver
+  ) {
   }
 
   ngOnInit(): void {
+    this.vcref.clear();
+    import('./second-child/second-child.component').then(({SecondChildComponent}) => {
+      this.vcref.createComponent(
+        this.cfr.resolveComponentFactory(SecondChildComponent)
+      );
+    });
+
+    this.vcref.createComponent(
+      this.cfr.resolveComponentFactory(FirstChildComponent)
+    );
   }
 
   greet(): void {
@@ -28,4 +42,5 @@ export class GreetComponent implements OnInit {
   declarations: [GreetComponent],
   imports: [FormsModule]
 })
-class GreetComponentModule {}
+class GreetComponentModule {
+}
