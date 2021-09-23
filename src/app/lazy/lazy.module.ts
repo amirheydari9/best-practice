@@ -10,7 +10,7 @@ import {LazyRoutingModule} from './lazy-routing.module';
   ],
   imports: [
     CommonModule,
-    LazyRoutingModule
+    LazyRoutingModule,
   ],
   providers: [],
   bootstrap: []

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, ComponentFactoryResolver, OnInit, ViewChild, ViewContainerRef} from '@angular/core';
 
 @Component({
   selector: 'app-lazy',
@@ -7,9 +7,27 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LazyComponent implements OnInit {
 
-  constructor() { }
+  message: string;
+
+  @ViewChild('greetComp', {read: ViewContainerRef}) private greetComp: ViewContainerRef;
+
+  constructor(
+    private vcref: ViewContainerRef,
+    private cfr: ComponentFactoryResolver
+  ) {
+  }
 
   ngOnInit(): void {
+  }
+
+  async loadGreetComponent() {
+    this.greetComp.clear();
+    const {GreetComponent} = await import('./greet/greet.component');
+    const greetComp = this.greetComp.createComponent(
+      this.cfr.resolveComponentFactory(GreetComponent)
+    );
+    greetComp.instance.greetMessage = Math.random().toString();
+    greetComp.instance.sendMessageEvent.subscribe(data => this.message = data);
   }
 
 }
