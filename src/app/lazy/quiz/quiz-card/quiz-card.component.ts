@@ -18,6 +18,7 @@ export class QuizCardComponent implements OnChanges, OnDestroy {
   answeredCorrectly: boolean;
 
   ngOnChanges(changes: SimpleChanges): void {
+    console.log(changes);
   }
 
   ngOnDestroy(): void {
