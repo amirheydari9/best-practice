@@ -1,6 +1,6 @@
 import {Component, ComponentFactoryResolver, OnDestroy, OnInit, ViewChild, ViewContainerRef} from '@angular/core';
-import {takeUntil} from 'rxjs/operators';
 import {Subject} from 'rxjs';
+import {takeUntil} from 'rxjs/operators';
 
 @Component({
   selector: 'app-lazy',
@@ -23,20 +23,19 @@ export class LazyComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
   }
 
-  async loadGreetComponent() {
+  async loadGreetComponent(): Promise<any> {
     this.greetComp.clear();
     const {GreetComponent} = await import('./greet/greet.component');
     const {instance} = this.greetComp.createComponent(
       this.cfr.resolveComponentFactory(GreetComponent)
     );
     instance.greetMessage = Math.random().toString();
-    instance.sendMessageEvent.pipe().subscribe(data => this.message = data);
+    instance.sendMessageEvent.pipe(takeUntil(instance.destroy$)).subscribe(data => this.message = data);
   }
 
   ngOnDestroy(): void {
     this.destroy$.next();
     this.destroy$.complete();
   }
-
 
 }
