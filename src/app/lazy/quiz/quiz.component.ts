@@ -39,15 +39,18 @@ export class QuizComponent implements OnInit, OnDestroy {
   }
 
   private async lazyLoadQuizCard() {
-    const {QuizCardComponent} = await import('./quiz-card/quiz-card.component');
-    const quizCardFactory = this.cfr.resolveComponentFactory(QuizCardComponent);
-    const {instance} = this.quizContainer.createComponent(quizCardFactory, null, this.injector);
-    instance.question = this.quizService.getNextQuestion();
-    instance.questionAnswered.pipe(
-      takeUntil(instance.destroy$)
-    ).subscribe(() => this.showNewQuestion());
-    (instance as any).ngOnChanges({
-      question: new SimpleChange(null, instance.question, true)
-    });
+    const newQuestion = this.quizService.getNextQuestion();
+    if (newQuestion) {
+      const {QuizCardComponent} = await import('./quiz-card/quiz-card.component');
+      const quizCardFactory = this.cfr.resolveComponentFactory(QuizCardComponent);
+      const {instance} = this.quizContainer.createComponent(quizCardFactory, null, this.injector);
+      instance.question = newQuestion;
+      instance.questionAnswered.pipe(
+        takeUntil(instance.destroy$)
+      ).subscribe(() => this.showNewQuestion());
+      (instance as any).ngOnChanges({
+        question: new SimpleChange(null, instance.question, true)
+      });
+    }
   }
 }
