@@ -1,6 +1,7 @@
 import {Component, ComponentFactoryResolver, EventEmitter, Input, NgModule, OnInit, Output, ViewContainerRef} from '@angular/core';
 import {FormsModule} from '@angular/forms';
 import {FirstChildComponent} from './first-child/first-child.component';
+import {CommonModule} from '@angular/common';
 
 @Component({
   selector: 'app-greet',
@@ -40,7 +41,7 @@ export class GreetComponent implements OnInit {
 
 @NgModule({
   declarations: [GreetComponent],
-  imports: [FormsModule]
+  imports: [CommonModule, FormsModule]
 })
 class GreetComponentModule {
 }
