@@ -9,13 +9,13 @@ import {DialogData} from '../../models/dialog-data.model';
   selector: 'app-dialog',
   styleUrls: ['dialog.component.scss'],
   template: `
-    <div mat-dialog-content>
+    <mat-dialog-content>
       <p class="dialog-paragraph">{{ data.headerText }}</p>
       <ng-container
         [ngTemplateOutlet]="data.template"
         [ngTemplateOutletContext]="data.context"
       ></ng-container>
-    </div>
+    </mat-dialog-content>
   `
 })
 export class DialogComponent<T> {

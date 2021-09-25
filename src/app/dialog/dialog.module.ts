@@ -4,6 +4,7 @@ import {MatButtonModule} from '@angular/material/button';
 import {MatDialogModule} from '@angular/material/dialog';
 import {DialogComponent} from './components/dialog/dialog.component';
 import {ButtonComponent} from './components/button/button.component';
+import {DialogFactoryService} from './service/dialog-factory.service';
 
 
 @NgModule({
@@ -14,7 +15,8 @@ import {ButtonComponent} from './components/button/button.component';
   ],
   exports: [DialogComponent, ButtonComponent],
   declarations: [DialogComponent, ButtonComponent],
-  entryComponents: [DialogComponent]
+  entryComponents: [DialogComponent],
+  providers: [DialogFactoryService]
 })
 export class DialogModule {
 }
