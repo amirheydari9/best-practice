@@ -1,0 +1,27 @@
+<ng-template #firstDialogTemplate>
+  <h2>1. This is the first template</h2>
+  <app-dialog-button
+    color="primary"
+    (click)="changeDialogTemplate(secondDialogTemplate)">Go to Second Teamplate
+  </app-dialog-button>
+</ng-template>
+
+<ng-template #secondDialogTemplate>
+  <h2>2. This is the second template</h2>
+  <app-dialog-button
+    color="primary"
+    (click)="changeDialogTemplate(firstDialogTemplate)">Return to First Teamplate
+  </app-dialog-button>
+  <app-dialog-button (click)="closeDialog()">Close</app-dialog-button>
+</ng-template>
+
+<ng-template #loaderDialogTemplate>
+  <h2>We can show a loader while action is completed</h2>
+  <div class="loader">
+    <mat-spinner></mat-spinner>
+  </div>
+</ng-template>
+
+<h1>This is a Dynamic Dialog example</h1>
+
+<button (click)="dispatchDialog()">Show me the dialog!</button>

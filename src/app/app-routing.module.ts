@@ -5,6 +5,10 @@ const routes: Routes = [
   {
     path: 'lazy',
     loadChildren: () => import('./lazy/lazy.module').then(m => m.LazyModule)
+  },
+  {
+    path: 'dialog',
+    loadChildren: () => import('./dialog/dialog-wrapper.module').then(m => m.DialogWrapperModule)
   }
 ];
 
