@@ -12,9 +12,7 @@ import {DialogOptions} from '../models/dialog-options.model';
 // Services
 import {DialogService} from './dialog.service';
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable()
 export class DialogFactoryService<T = undefined> {
   constructor(private dialog: MatDialog) {
   }
