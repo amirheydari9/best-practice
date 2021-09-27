@@ -1,13 +1,17 @@
-import {NgModule} from '@angular/core';
-import {CommonModule} from '@angular/common';
-import {PreloadComponent} from './preload.component';
-import {PreloadRoutingModule} from './preload-routing.module';
+import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
+
+import { PreloadRoutingModule } from './preload-routing.module';
+import { PreloadComponent } from './preload.component';
 
 
 @NgModule({
-  declarations: [PreloadComponent],
-  imports: [CommonModule, PreloadRoutingModule]
+  declarations: [
+    PreloadComponent
+  ],
+  imports: [
+    CommonModule,
+    PreloadRoutingModule
+  ]
 })
-
-export class PreloadModule {
-}
+export class PreloadModule { }
