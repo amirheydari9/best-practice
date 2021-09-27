@@ -5,6 +5,10 @@ const routes: Routes = [
   {
     path: 'lazy',
     loadChildren: () => import('./lazy/lazy.module').then(m => m.LazyModule)
+  },
+  {
+    path: 'preload',
+    loadChildren: () => import('./preload/preload.module').then(m => m.PreloadModule)
   }
 ];
 
