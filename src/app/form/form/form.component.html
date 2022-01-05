@@ -5,20 +5,43 @@
     <input type="text" id="name" name="name" formControlName="name">
   </p>
 
+  Hobbies:
+  <div formArrayName="hobbies" *ngFor="let hobby of hobbies.controls; let i=index">
+    {{i + 1}}
+    hobby name :
+    <input type="text" [formControl]="hobby">
+    <span *ngIf="this.hobbies.at(i).hasError('required') && this.hobbies.at(i).touched">این فیلد اجباری است</span>
+    <button (click)="removeHobby(i)">Remove</button>
+  </div>
+
 
   Skills:
-  <div formArrayName="skills">
-    <div *ngFor="let skill of skills.controls; let i=index">
-      <div [formGroup]="skill">
-        {{i}}
-        skill name :
-        <input type="text" formControlName="skill">
-        exp:
-        <input type="text" formControlName="exp">
+  <div formArrayName="skills" *ngFor="let skill of skills.controls; let i=index">
+    <div [formGroup]="skill">
+      {{i + 1}}
+      skill name :
+      <input type="text" formControlName="skill">
+      <span
+        *ngIf="this.skills.controls[i].get('skill').hasError('required') && this.skills.controls[i].get('skill').touched">این فیلد اجباری است</span>
 
-        <button (click)="removeSkill(i)">Remove</button>
-      </div>
+      exp:
+      <input type="text" formControlName="exp">
+      <span
+        *ngIf="this.skills.controls[i].get('exp').hasError('required') && this.skills.controls[i].get('exp').touched">این فیلد اجباری است</span>
+
+      <button (click)="removeSkill(i)">Remove</button>
     </div>
+  </div>
+
+  address:
+  <div formGroupName="address">
+    city:
+    <input formControlName="city"/>
+    <span *ngIf="this.address.controls.city.hasError('required') && this.address.controls.city.touched">این فیلد اجباری است</span>
+    description:
+    <input formControlName="description"/>
+    <span *ngIf="this.address.controls.description.hasError('required') && this.address.controls.description.touched">این فیلد اجباری است</span>
+
   </div>
 
   <p>
@@ -29,7 +52,8 @@
 
 
 <p>
-  <button type="button" (click)="addSkills()">Add</button>
+  <button type="button" (click)="addSkills()">addSkills</button>
+  <button type="button" (click)="addHobbies()">addHobbies</button>
 </p>
 
 {{this.skillsForm.value | json}}
