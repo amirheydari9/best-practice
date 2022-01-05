@@ -21,6 +21,10 @@ const routes: Routes = [
   {
     path: 'preload',
     loadChildren: () => import('./preload/preload.module').then(m => m.PreloadModule)
+  },
+  {
+    path: 'form',
+    loadChildren: () => import('./form/form.module').then(m => m.FormModule)
   }
 ];
 
