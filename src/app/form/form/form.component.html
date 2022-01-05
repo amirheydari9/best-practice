@@ -10,7 +10,7 @@
     {{i + 1}}
     hobby name :
     <input type="text" [formControl]="hobby">
-    <span *ngIf="this.hobbies.at(i).hasError('required') && this.hobbies.at(i).touched">این فیلد اجباری است</span>
+    <span *ngIf="errorHandle(this.hobbies.at(i),'required')">این فیلد اجباری است</span>
     <button (click)="removeHobby(i)">Remove</button>
   </div>
 
@@ -21,13 +21,11 @@
       {{i + 1}}
       skill name :
       <input type="text" formControlName="skill">
-      <span
-        *ngIf="this.skills.controls[i].get('skill').hasError('required') && this.skills.controls[i].get('skill').touched">این فیلد اجباری است</span>
+      <span *ngIf="errorHandle(this.skills.controls[i].get('skill'),'required')">این فیلد اجباری است</span>
 
       exp:
       <input type="text" formControlName="exp">
-      <span
-        *ngIf="this.skills.controls[i].get('exp').hasError('required') && this.skills.controls[i].get('exp').touched">این فیلد اجباری است</span>
+      <span *ngIf="errorHandle(this.skills.controls[i].get('exp'),'required')">این فیلد اجباری است</span>
 
       <button (click)="removeSkill(i)">Remove</button>
     </div>
@@ -37,11 +35,10 @@
   <div formGroupName="address">
     city:
     <input formControlName="city"/>
-    <span *ngIf="this.address.controls.city.hasError('required') && this.address.controls.city.touched">این فیلد اجباری است</span>
+    <span *ngIf="errorHandle(this.address.controls.city,'required')">این فیلد اجباری است</span>
     description:
     <input formControlName="description"/>
-    <span *ngIf="this.address.controls.description.hasError('required') && this.address.controls.description.touched">این فیلد اجباری است</span>
-
+    <span *ngIf="errorHandle(this.address.controls.description,'required')">این فیلد اجباری است</span>
   </div>
 
   <p>

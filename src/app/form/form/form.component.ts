@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {FormArray, FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
+import {AbstractControl, FormArray, FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 
 @Component({
   selector: 'app-form',
@@ -65,6 +65,10 @@ export class FormComponent implements OnInit {
 
   removeHobby(i: number): void {
     this.hobbies.removeAt(i);
+  }
+
+  errorHandle(control: AbstractControl, error: string): boolean {
+    return control.hasError(error) && control.touched;
   }
 
   onSubmit(): void {
