@@ -47,7 +47,7 @@ export class FormComponent implements OnInit {
   }
 
   newHobby(): FormControl {
-    return this.fb.control(null, Validators.required);
+    return this.fb.control('', Validators.required);
   }
 
   addSkills(): void {
@@ -55,7 +55,6 @@ export class FormComponent implements OnInit {
   }
 
   addHobbies(): void {
-    console.log(this.newHobby());
     this.hobbies.push(this.newHobby());
   }
 
