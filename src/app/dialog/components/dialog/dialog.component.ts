@@ -26,8 +26,7 @@ export class DialogComponent<T> {
    */
   constructor(
     public dialogRef: MatDialogRef<DialogComponent<T>>,
-    @Inject(MAT_DIALOG_DATA)
-    public data: DialogData
+    @Inject(MAT_DIALOG_DATA) public data: DialogData
   ) {
   }
 }

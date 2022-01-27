@@ -1,0 +1,18 @@
+<form [formGroup]="form">
+  <input type="text" #datepickerInput1 formControlName="date1"/>
+  <ng-persian-datepicker
+    [input]="datepickerInput1"
+    [dateValue]="date1.value"
+    [dateFormat]="'jYYYY-jMM-jDD'"
+    [timeEnable]="false"
+  ></ng-persian-datepicker>
+
+  <input type="text" #datepickerInput2 formControlName="date2"/>
+  <ng-persian-datepicker
+    [input]="datepickerInput2"
+    [dateValue]="date2.value"
+    [dateFormat]="'jYYYY-jMM-jDD'"
+    [timeEnable]="false"
+  ></ng-persian-datepicker>
+
+</form>
