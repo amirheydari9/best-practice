@@ -29,6 +29,10 @@ const routes: Routes = [
   {
     path: 'datepicker',
     loadChildren: () => import('./datepicker/datepicker.module').then(m => m.DatepickerModule)
+  },
+  {
+    path: 'joke',
+    loadChildren: () => import('./joke/joke.module').then(m => m.JokeModule)
   }
 ];
 
