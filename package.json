@@ -26,7 +26,6 @@
     "moment-jalaali": "^0.9.1",
     "network-information-types": "^0.1.0",
     "ng-persian-datepicker": "^2.4.0",
-    "ng2-jalali-date-picker": "^2.2.8",
     "rxjs": "~6.6.0",
     "tslib": "^2.0.0",
     "zone.js": "~0.11.3"
