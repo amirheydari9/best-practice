@@ -2,3 +2,9 @@
   <p>id : {{joke.id}} - joke : {{joke.joke}}</p>
 </div>
 
+
+--------------------------------------------
+
+<div *ngFor="let post of posts$ | async">
+  <p>id : {{post.id}} - post : {{post.title}}</p>
+</div>

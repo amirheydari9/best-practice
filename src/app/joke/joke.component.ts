@@ -4,6 +4,8 @@ import {RootStoreState} from '../root-store';
 import {JokeStoreActions, JokeStoreSelectors} from '../root-store/joke-store';
 import {Observable} from 'rxjs';
 import {Joke} from '../models/Joke';
+import {Post} from "../models/Post";
+import {PostStoreActions, PostStoreSelectors} from "../root-store/post-store";
 
 @Component({
   selector: 'app-joke',
@@ -13,6 +15,7 @@ import {Joke} from '../models/Joke';
 export class JokeComponent implements OnInit {
 
   jokes$: Observable<Joke[]>;
+  posts$: Observable<Post[]>;
   error$: Observable<any>;
   isLoading$: Observable<boolean>;
 
@@ -27,6 +30,10 @@ export class JokeComponent implements OnInit {
       JokeStoreSelectors.selectJokeList
     );
 
+    this.posts$ = this.store$.select(
+      PostStoreSelectors.selectPostList
+    );
+
     this.error$ = this.store$.select(
       JokeStoreSelectors.selectJokeError
     );
@@ -36,6 +43,7 @@ export class JokeComponent implements OnInit {
     );
 
     this.store$.dispatch(new JokeStoreActions.LoadRequestAction());
+    this.store$.dispatch(new PostStoreActions.LoadRequestAction());
   }
 
 }
