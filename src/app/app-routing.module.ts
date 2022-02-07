@@ -33,6 +33,10 @@ const routes: Routes = [
   {
     path: 'joke',
     loadChildren: () => import('./joke/joke.module').then(m => m.JokeModule)
+  },
+  {
+    path: 'bind-query-param-to-form',
+    loadChildren: () => import('./bind-query-param-to-form/bind-query-param-to-form-routing.module').then(m => m.BindQueryParamToFormRoutingModule)
   }
 ];
 
