@@ -4,6 +4,7 @@ import {RootStoreState} from '../root-store';
 import {JokeStoreActions, JokeStoreSelectors} from '../root-store/joke-store';
 import {Observable} from 'rxjs';
 import {Joke} from '../models/Joke';
+import {CounterStoreActions, CounterStoreSelectors} from '../root-store/counter-store';
 
 @Component({
   selector: 'app-joke',
@@ -15,6 +16,8 @@ export class JokeComponent implements OnInit {
   jokes$: Observable<Joke[]>;
   error$: Observable<any>;
   isLoading$: Observable<boolean>;
+
+  counter: Observable<number>;
 
   constructor(
     private store$: Store<RootStoreState.State>
@@ -36,6 +39,21 @@ export class JokeComponent implements OnInit {
     );
 
     this.store$.dispatch(new JokeStoreActions.LoadRequestAction());
+
+    this.counter = this.store$.select(CounterStoreSelectors.getCounter);
+
   }
 
+  handleIncrement(): void {
+    this.store$.dispatch(CounterStoreActions.increment());
+  }
+
+  handleDecrement(): void {
+    this.store$.dispatch(CounterStoreActions.decrement());
+  }
+
+  handleCustomIncrement(): void {
+    const payload = {counter: 5};
+    this.store$.dispatch(CounterStoreActions.customIncrement({payload}));
+  }
 }

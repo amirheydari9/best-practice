@@ -2,9 +2,11 @@ import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {StoreModule} from '@ngrx/store';
 import {EffectsModule} from '@ngrx/effects';
-import {JokeStoreModule} from './joke-store';
 import {StoreDevtoolsModule} from '@ngrx/store-devtools';
 import {environment} from '../../environments/environment';
+
+import {JokeStoreModule} from './joke-store';
+import {CounterStoreModule} from './counter-store';
 
 
 @NgModule({
@@ -17,7 +19,8 @@ import {environment} from '../../environments/environment';
       maxAge: 25, // Retains last 25 states
       logOnly: !environment.production
     }),
-    JokeStoreModule
+    JokeStoreModule,
+    CounterStoreModule
   ]
 })
 export class RootStoreModule {
