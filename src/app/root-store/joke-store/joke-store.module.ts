@@ -2,8 +2,9 @@ import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {StoreModule} from '@ngrx/store';
 import {EffectsModule} from '@ngrx/effects';
-import {jokeFeatureKey, jokeReducer} from './reducer';
+import {jokeReducer} from './reducer';
 import {JokeStoreEffects} from './effects';
+import {jokeFeatureKey} from './state';
 
 
 @NgModule({

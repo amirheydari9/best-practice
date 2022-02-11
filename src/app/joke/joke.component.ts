@@ -38,7 +38,7 @@ export class JokeComponent implements OnInit {
       JokeStoreSelectors.selectJokeIsLoading
     );
 
-    this.store$.dispatch(new JokeStoreActions.LoadRequestAction());
+    this.store$.dispatch(JokeStoreActions.fetchJokes());
 
     this.counter = this.store$.select(CounterStoreSelectors.getCounter);
 

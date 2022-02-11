@@ -1,8 +1,6 @@
 import {createFeatureSelector, createSelector} from '@ngrx/store';
-import {State} from './state';
-import {jokeFeatureKey} from './reducer';
+import {jokeFeatureKey, State} from './state';
 
-// Lookup the 'Joke' feature state managed by NgRx
 const getJokeState = createFeatureSelector<State>(jokeFeatureKey);
 
 export const selectJokeList = createSelector(
@@ -18,15 +16,4 @@ export const selectJokeError = createSelector(
 export const selectJokeIsLoading = createSelector(
   getJokeState,
   state => state.isLoading
-);
-
-export const selectAppComponentViewModel = createSelector(
-  selectJokeList,
-  selectJokeError,
-  selectJokeIsLoading,
-  (jokes, error, loading) => ({
-    jokes,
-    error,
-    loading
-  })
 );
