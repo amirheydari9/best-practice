@@ -6,7 +6,7 @@ import {StoreDevtoolsModule} from '@ngrx/store-devtools';
 import {environment} from '../../environments/environment';
 
 import {JokeStoreModule} from './joke-store';
-import {PostStoreModule} from './post-store';
+import {CounterStoreModule} from './counter-store';
 
 
 @NgModule({
@@ -20,7 +20,7 @@ import {PostStoreModule} from './post-store';
       logOnly: !environment.production
     }),
     JokeStoreModule,
-    PostStoreModule
+    CounterStoreModule
   ]
 })
 export class RootStoreModule {

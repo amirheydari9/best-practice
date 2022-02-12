@@ -1,7 +1,8 @@
 import {JokeStoreState} from './joke-store';
-import {PostStoreState} from './post-store';
+import {CounterStoreState} from './counter-store';
 
 export interface State {
-  joke: JokeStoreState.State;
-  post: PostStoreState.State;
+  [JokeStoreState.jokeFeatureKey]: JokeStoreState.State;
+  [CounterStoreState.counterFeatureKey]: CounterStoreState.State;
+
 }

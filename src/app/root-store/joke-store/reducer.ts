@@ -1,35 +1,34 @@
-import {Actions, ActionTypes} from './actions';
 import {initialState, State} from './state';
+import {createReducer, on} from '@ngrx/store';
+import {fetchJokes, fetchJokesFailure, fetchJokesSuccess} from './actions';
 
-export const jokeFeatureKey = 'joke';
+const JOKE_REDUCER = createReducer(initialState,
+  on(fetchJokes, state => {
+    return {
+      ...state,
+      jokes: [],
+      isLoading: true,
+      error: null
+    };
+  }),
+  on(fetchJokesSuccess, (state, {payload}) => {
+    return {
+      ...state,
+      jokes: payload.items,
+      isLoading: false,
+      error: null
+    };
+  }),
+  on(fetchJokesFailure, (state, {payload}) => {
+    return {
+      ...state,
+      jokes: [],
+      isLoading: false,
+      error: payload.error
+    };
+  }),
+);
 
-export function jokeReducer(state = initialState, action: Actions): State {
-  switch (action.type) {
-    case ActionTypes.LOAD_REQUEST: {
-      return {
-        ...state,
-        jokes: [],
-        isLoading: true,
-        error: null
-      };
-    }
-    case ActionTypes.LOAD_SUCCESS: {
-      return {
-        ...state,
-        jokes: action.payload.items,
-        isLoading: false,
-        error: null
-      };
-    }
-    case ActionTypes.LOAD_FAILURE: {
-      return {
-        ...state,
-        isLoading: false,
-        error: action.payload.error
-      };
-    }
-    default: {
-      return state;
-    }
-  }
+export function jokeReducer(state, action): State {
+  return JOKE_REDUCER(state, action);
 }

@@ -1,28 +1,7 @@
-import {Action} from '@ngrx/store';
+import {createAction, props} from '@ngrx/store';
 import {Joke} from '../../models/Joke';
 
-export enum ActionTypes {
-  LOAD_REQUEST = '[Joke] Load Request',
-  LOAD_FAILURE = '[Joke] Load Failure',
-  LOAD_SUCCESS = '[Joke] Load Success'
-}
+export const fetchJokes = createAction('[Joke] fetchJokes');
+export const fetchJokesSuccess = createAction('[Joke] fetchJokesSuccess', props<{ payload: { items: Joke[] } }>());
+export const fetchJokesFailure = createAction('[Joke] fetchJokesFailure', props<{ payload: { error: string } }>());
 
-export class LoadRequestAction implements Action {
-  readonly type = ActionTypes.LOAD_REQUEST;
-}
-
-export class LoadFailureAction implements Action {
-  readonly type = ActionTypes.LOAD_FAILURE;
-
-  constructor(public payload: { error: string }) {
-  }
-}
-
-export class LoadSuccessAction implements Action {
-  readonly type = ActionTypes.LOAD_SUCCESS;
-
-  constructor(public payload: { items: Joke[] }) {
-  }
-}
-
-export type Actions = LoadRequestAction | LoadFailureAction | LoadSuccessAction;

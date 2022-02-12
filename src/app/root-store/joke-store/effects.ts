@@ -1,38 +1,28 @@
 import {Injectable} from '@angular/core';
-import {Actions, Effect, ofType} from '@ngrx/effects';
+import {Actions, createEffect, ofType} from '@ngrx/effects';
 import {Action} from '@ngrx/store';
-import {Observable, of as observableOf} from 'rxjs';
-import {catchError, map, startWith, switchMap} from 'rxjs/operators';
-import * as jokeActions from './actions';
+import {Observable, of} from 'rxjs';
+import {catchError, map, switchMap} from 'rxjs/operators';
 import {JokeService} from '../../services/joke-service.service';
+import {fetchJokes, fetchJokesFailure, fetchJokesSuccess} from './actions';
 
 @Injectable()
 export class JokeStoreEffects {
   constructor(
     private jokeService: JokeService,
-    private actions$: Actions) {
+    private actions$: Actions
+  ) {
   }
 
-  @Effect()
-  loadRequestEffect$: Observable<Action> = this.actions$.pipe(
-    ofType<jokeActions.LoadRequestAction>(
-      jokeActions.ActionTypes.LOAD_REQUEST
-    ),
-    startWith(new jokeActions.LoadRequestAction()),
-    switchMap(action =>
-      this.jokeService
-        .getJokes()
-        .pipe(
-          map(
-            items =>
-              new jokeActions.LoadSuccessAction({
-                items
-              })
-          ),
-          catchError(error =>
-            observableOf(new jokeActions.LoadFailureAction({error}))
-          )
+  fetchJokesEffect$: Observable<Action> = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(fetchJokes),
+      switchMap(action =>
+        this.jokeService.getJokes().pipe(
+          map(items => fetchJokesSuccess({payload: {items}})),
+          catchError(error => of(fetchJokesFailure({payload: {error}})))
         )
-    )
-  );
+      )
+    );
+  });
 }
