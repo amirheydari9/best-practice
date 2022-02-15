@@ -27,4 +27,8 @@ export class JokeService {
       )
       .pipe(map(result => result.value));
   }
+
+  getError(): any {
+    return this.http.get('https://mock.codes/400');
+  }
 }

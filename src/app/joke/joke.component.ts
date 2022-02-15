@@ -5,6 +5,7 @@ import {JokeStoreActions, JokeStoreSelectors} from '../root-store/joke-store';
 import {Observable} from 'rxjs';
 import {Joke} from '../models/Joke';
 import {CounterStoreActions, CounterStoreSelectors} from '../root-store/counter-store';
+import {JokeService} from '../services/joke-service.service';
 
 @Component({
   selector: 'app-joke',
@@ -20,11 +21,14 @@ export class JokeComponent implements OnInit {
   counter: Observable<number>;
 
   constructor(
-    private store$: Store<RootStoreState.State>
+    private store$: Store<RootStoreState.State>,
+    private jokeService: JokeService
   ) {
   }
 
   ngOnInit(): void {
+
+    this.handleError();
 
     this.jokes$ = this.store$.select(
       JokeStoreSelectors.selectJokeList
@@ -55,5 +59,9 @@ export class JokeComponent implements OnInit {
   handleCustomIncrement(): void {
     const payload = {counter: 5};
     this.store$.dispatch(CounterStoreActions.customIncrement({payload}));
+  }
+
+  handleError() {
+    this.jokeService.getError().subscribe();
   }
 }

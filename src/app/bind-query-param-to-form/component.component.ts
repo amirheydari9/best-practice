@@ -8,15 +8,17 @@ import {FormControl, FormGroup} from '@angular/forms';
 })
 export class ComponentComponent implements OnInit {
 
-  form = new FormGroup({
-    searchTerm: new FormControl(''),
-    category: new FormControl('one'),
-  });
+  form: FormGroup;
 
   constructor() {
   }
 
   ngOnInit(): void {
+    this.form = new FormGroup({
+      searchTerm: new FormControl(''),
+      category: new FormControl('one'),
+    });
+
     this.form.valueChanges.subscribe((value) => {
       console.log('fetch data with new value', value);
     });

@@ -4,6 +4,8 @@
 <button (click)="handleDecrement()">dec</button>
 <button (click)="handleCustomIncrement()">customIncrement</button>
 
+<button (click)="handleError()">get500</button>
+
 
 <div *ngFor="let joke of jokes$ | async">
   <p>id : {{joke.id}} - joke : {{joke.joke}}</p>
