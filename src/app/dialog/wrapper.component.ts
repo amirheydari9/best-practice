@@ -13,6 +13,7 @@ export class WrapperComponent {
   title = 'dialog-example';
 
   dialog: DialogService;
+  
   @ViewChild('firstDialogTemplate')
   firstDialogTemplate: TemplateRef<any>;
 
