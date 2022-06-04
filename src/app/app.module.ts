@@ -24,7 +24,7 @@ import {GlobalErrorHandlerService} from './services/global-error-handler.service
     ReactiveFormsModule
   ],
   providers: [
-    {provide: ErrorHandler, useClass: GlobalErrorHandlerService}
+    {provide: ErrorHandler, useClass: GlobalErrorHandlerService},
   ],
   bootstrap: [AppComponent]
 })

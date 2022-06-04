@@ -15,6 +15,7 @@ export class GlobalErrorHandlerService implements ErrorHandler {
       console.log(error, 'as');
       // this.router.navigate(['/form']);
     } else {
+      console.log(error);
       console.error('an error occurred here broo');
     }
   }

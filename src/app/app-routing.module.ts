@@ -37,6 +37,10 @@ const routes: Routes = [
   {
     path: 'bind-query-param-to-form',
     loadChildren: () => import('./bind-query-param-to-form/bind-query-param-to-form-routing.module').then(m => m.BindQueryParamToFormRoutingModule)
+  },
+  {
+    path: 'new-dialog',
+    loadChildren: () => import('./new-dialog/new-dialog.module').then(m => m.NewDialogModule)
   }
 ];
 
