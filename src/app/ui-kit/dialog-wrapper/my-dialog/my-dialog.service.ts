@@ -1,5 +1,5 @@
 import {Injectable, TemplateRef} from '@angular/core';
-import {MatDialog} from '@angular/material/dialog';
+import {MatDialog, MatDialogConfig} from '@angular/material/dialog';
 import {ComponentType} from '@angular/cdk/overlay';
 import {MyDialogComponent} from './my-dialog.component';
 
@@ -15,9 +15,9 @@ export class MyDialogService {
 
   private mediumConf = {height: 'auto', width: '70%', ...this.conf};
 
-  public open<T>(component: ComponentType<T> | TemplateRef<T>, data?: any) {
+  public open<T>(component: ComponentType<T> | TemplateRef<T>, data?: any, config?: MatDialogConfig) {
     this.mediumConf['data'] = {component, data};
-    const conf = this.mediumConf;
+    const conf = {...this.mediumConf, ...config};
     return this.dialog.open(MyDialogComponent, conf);
   }
 

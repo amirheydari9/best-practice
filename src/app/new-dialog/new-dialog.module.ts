@@ -7,12 +7,14 @@ import {ConfirmDialogModule} from '../ui-kit/confirm-dialog/confirm-dialog.modul
 import {DialogWrapperModule} from '../ui-kit/dialog-wrapper/dialog-wrapper.module';
 import {ReactiveFormsModule} from '@angular/forms';
 import { UserDialogComponent } from './user-dialog/user-dialog.component';
+import { DetailDialogComponent } from './user-dialog/detail-dialog/detail-dialog.component';
 
 
 @NgModule({
   declarations: [
     NewDialogComponent,
-    UserDialogComponent
+    UserDialogComponent,
+    DetailDialogComponent
   ],
   imports: [
     CommonModule,
