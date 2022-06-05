@@ -1,1 +1,20 @@
 <button (click)="handleOpenConfirmDialog()">confirm</button>
+
+
+<ng-template #firstDialogTemplate>
+ <form [formGroup]="userForm" (ngSubmit)="handleSubmitForm()">
+   <input formControlName="name" placeholder="name"/>
+   <input formControlName="email" placeholder="email"/>
+   <button type="submit">submit user</button>
+ </form>
+</ng-template>
+<button (click)="dispatchDialog1()">Show me the dialog 1!</button>
+
+<ng-template #secondDialogTemplate>
+  <h2>2. This is the first template</h2>
+</ng-template>
+
+<!--<button (click)="dispatchDialog2()">Show me the dialog 2!</button>-->
+
+
+<button (click)="handleCloseDialog1()">close dialog 1</button>

@@ -1,5 +1,10 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, TemplateRef, ViewChild} from '@angular/core';
 import {ConfirmDialogService} from '../ui-kit/confirm-dialog/confirm-dialog.service';
+import {DialogWrapperService} from '../ui-kit/dialog-wrapper/dialog-wrapper.service';
+import {DialogData} from '../dialog/models/dialog-data.model';
+import {MatDialogRef} from '@angular/material/dialog';
+import {DialogWrapperComponent} from '../ui-kit/dialog-wrapper/dialog-wrapper.component';
+import {FormBuilder, FormGroup} from '@angular/forms';
 
 @Component({
   selector: 'app-new-dialog',
@@ -8,13 +13,30 @@ import {ConfirmDialogService} from '../ui-kit/confirm-dialog/confirm-dialog.serv
 })
 export class NewDialogComponent implements OnInit {
 
+  @ViewChild('firstDialogTemplate')
+  firstDialogTemplate: TemplateRef<any>;
+
+  @ViewChild('secondDialogTemplate')
+  secondDialogTemplate: TemplateRef<any>;
+
+  dialogRef1: MatDialogRef<DialogWrapperComponent>;
+
+  userForm: FormGroup;
+
 
   constructor(
-    private dialogService: ConfirmDialogService
+    private dialogService: ConfirmDialogService,
+    private dialogWrapperService: DialogWrapperService,
+    private fb: FormBuilder
   ) {
   }
 
+
   ngOnInit(): void {
+    this.userForm = this.fb.group({
+      name: '',
+      email: ''
+    });
   }
 
   handleOpenConfirmDialog(): void {
@@ -31,4 +53,40 @@ export class NewDialogComponent implements OnInit {
       }
     });
   }
+
+  dispatchDialog1(): void {
+    this.dialogRef1 = this.dialogWrapperService.open({
+      headerText: 'Here is our dialog',
+      template: this.firstDialogTemplate
+    });
+    this.dialogRef1.afterClosed().subscribe((data) => console.log(data));
+
+    // this.openDialog({
+    //   headerText: 'Here is our dialog1',
+    //   template: this.firstDialogTemplate
+    // });
+  }
+
+  // dispatchDialog2(): void {
+  //   this.openDialog({
+  //     headerText: 'Here is our dialog2',
+  //     template: this.secondDialogTemplate
+  //   });
+  // }
+
+  // private openDialog(dialogData: DialogData): void {
+  //   this.dialogRef = this.dialogWrapperService.open(dialogData);
+  //   this.dialogRef.beforeClosed().subscribe((data) => console.log(data));
+  // }
+
+  handleCloseDialog1() {
+    this.dialogRef1.close('aaaaaa');
+  }
+
+  handleSubmitForm() {
+    const formValue = this.userForm.value;
+    this.dialogRef1.close(formValue);
+    this.userForm.reset();
+  }
 }
+

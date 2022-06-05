@@ -1,0 +1,18 @@
+<!--<mat-dialog-content>-->
+<!--  <p class="dialog-paragraph">{{ data.headerText }}</p>-->
+<!--  <ng-container-->
+<!--    [ngTemplateOutlet]="data.template"-->
+<!--    [ngTemplateOutletContext]="data.context"-->
+<!--  ></ng-container>-->
+<!--</mat-dialog-content>-->
+
+<mat-dialog-content>
+  <p class="dialog-paragraph">{{ data.headerText }}</p>
+  <ng-container
+    [ngTemplateOutlet]="data.template"
+  ></ng-container>
+</mat-dialog-content>
+
+<mat-dialog-actions>
+  <button (click)="handleCloseDialog()">close</button>
+</mat-dialog-actions>

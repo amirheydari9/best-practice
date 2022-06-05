@@ -4,6 +4,8 @@ import {CommonModule} from '@angular/common';
 import {NewDialogRoutingModule} from './new-dialog-routing.module';
 import {NewDialogComponent} from './new-dialog.component';
 import {ConfirmDialogModule} from '../ui-kit/confirm-dialog/confirm-dialog.module';
+import {DialogWrapperModule} from '../ui-kit/dialog-wrapper/dialog-wrapper.module';
+import {ReactiveFormsModule} from '@angular/forms';
 
 
 @NgModule({
@@ -13,7 +15,9 @@ import {ConfirmDialogModule} from '../ui-kit/confirm-dialog/confirm-dialog.modul
   imports: [
     CommonModule,
     NewDialogRoutingModule,
-    ConfirmDialogModule
+    ConfirmDialogModule,
+    DialogWrapperModule,
+    ReactiveFormsModule
   ],
 })
 export class NewDialogModule {
