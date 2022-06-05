@@ -1,5 +1,5 @@
 import {Injectable, TemplateRef} from '@angular/core';
-import {MatDialog, MatDialogConfig} from '@angular/material/dialog';
+import {MatDialog, MatDialogConfig, MatDialogRef} from '@angular/material/dialog';
 import {ComponentType} from '@angular/cdk/overlay';
 import {MyDialogComponent} from './my-dialog.component';
 
@@ -8,16 +8,21 @@ import {MyDialogComponent} from './my-dialog.component';
 })
 export class MyDialogService {
 
-  constructor(public dialog: MatDialog) {
+  constructor(
+    public dialog: MatDialog
+  ) {
   }
 
-  private conf = {autoFocus: true};
+  private defaultDialogConfig: MatDialogConfig = {
+    disableClose: true,
+    autoFocus: true,
+    height: 'auto',
+    width: '70%'
+  };
 
-  private mediumConf = {height: 'auto', width: '70%', ...this.conf};
-
-  public open<T>(component: ComponentType<T> | TemplateRef<T>, data?: any, config?: MatDialogConfig) {
-    this.mediumConf['data'] = {component, data};
-    const conf = {...this.mediumConf, ...config};
+  public open<T>(component: ComponentType<T> | TemplateRef<T>, config?: MatDialogConfig): MatDialogRef<MyDialogComponent> {
+    const data = {component, data: config ? config.data : null};
+    const conf = {...this.defaultDialogConfig, ...config, data};
     return this.dialog.open(MyDialogComponent, conf);
   }
 

@@ -52,6 +52,6 @@ export class UserDialogComponent implements OnInit {
   }
 
   handleOpenDetailDialog() {
-    this.myDialogService.open(DetailDialogComponent, null, {width: '400px', hasBackdrop: true});
+    this.myDialogService.open(DetailDialogComponent, {width: '400px', hasBackdrop: true});
   }
 }
