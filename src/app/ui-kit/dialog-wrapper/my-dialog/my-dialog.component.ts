@@ -1,11 +1,11 @@
 import {
   AfterViewInit,
+  ChangeDetectionStrategy,
   Component,
   ComponentFactoryResolver,
   ComponentRef,
   Inject,
   OnDestroy,
-  OnInit,
   ViewChild,
   ViewContainerRef
 } from '@angular/core';
@@ -14,7 +14,8 @@ import {MAT_DIALOG_DATA} from '@angular/material/dialog';
 @Component({
   selector: 'app-my-dialog',
   templateUrl: './my-dialog.component.html',
-  styleUrls: ['./my-dialog.component.scss']
+  styleUrls: ['./my-dialog.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class MyDialogComponent implements OnDestroy, AfterViewInit {
 
@@ -28,8 +29,8 @@ export class MyDialogComponent implements OnDestroy, AfterViewInit {
   }
 
   ngAfterViewInit(): void {
-    const factory = this.resolver.resolveComponentFactory(this.data.component);
-    this.componentRef = this.viewContainerRef.createComponent(factory);
+      const factory = this.resolver.resolveComponentFactory(this.data.component);
+      this.componentRef = this.viewContainerRef.createComponent(factory);
   }
 
   ngOnDestroy(): void {

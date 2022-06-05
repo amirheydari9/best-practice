@@ -92,7 +92,8 @@ export class NewDialogComponent implements OnInit {
   }
 
   openUserDialog() {
-    this.myDialogService.open(UserDialogComponent);
+    const dialogRef = this.myDialogService.open(UserDialogComponent);
+    dialogRef.afterClosed().subscribe(data => console.log(data));
   }
 }
 

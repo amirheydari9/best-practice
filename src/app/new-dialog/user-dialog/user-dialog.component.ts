@@ -1,5 +1,5 @@
 import {Component, Inject, OnInit} from '@angular/core';
-import {MAT_DIALOG_DATA} from '@angular/material/dialog';
+import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
 import {FormBuilder, FormGroup} from '@angular/forms';
 
 @Component({
@@ -13,6 +13,7 @@ export class UserDialogComponent implements OnInit {
 
   constructor(
     @Inject(MAT_DIALOG_DATA) public data,
+    private dialogRef: MatDialogRef<UserDialogComponent>,
     private fb: FormBuilder
   ) {
   }
@@ -27,6 +28,6 @@ export class UserDialogComponent implements OnInit {
   }
 
   handleSubmitForm() {
-
+    this.dialogRef.close(this.userForm.value);
   }
 }
