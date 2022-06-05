@@ -6,11 +6,13 @@ import {NewDialogComponent} from './new-dialog.component';
 import {ConfirmDialogModule} from '../ui-kit/confirm-dialog/confirm-dialog.module';
 import {DialogWrapperModule} from '../ui-kit/dialog-wrapper/dialog-wrapper.module';
 import {ReactiveFormsModule} from '@angular/forms';
+import { UserDialogComponent } from './user-dialog/user-dialog.component';
 
 
 @NgModule({
   declarations: [
-    NewDialogComponent
+    NewDialogComponent,
+    UserDialogComponent
   ],
   imports: [
     CommonModule,

@@ -1,10 +1,11 @@
 import {Component, OnInit, TemplateRef, ViewChild} from '@angular/core';
 import {ConfirmDialogService} from '../ui-kit/confirm-dialog/confirm-dialog.service';
 import {DialogWrapperService} from '../ui-kit/dialog-wrapper/dialog-wrapper.service';
-import {DialogData} from '../dialog/models/dialog-data.model';
 import {MatDialogRef} from '@angular/material/dialog';
 import {DialogWrapperComponent} from '../ui-kit/dialog-wrapper/dialog-wrapper.component';
 import {FormBuilder, FormGroup} from '@angular/forms';
+import {MyDialogService} from '../ui-kit/dialog-wrapper/my-dialog/my-dialog.service';
+import {UserDialogComponent} from './user-dialog/user-dialog.component';
 
 @Component({
   selector: 'app-new-dialog',
@@ -27,7 +28,8 @@ export class NewDialogComponent implements OnInit {
   constructor(
     private dialogService: ConfirmDialogService,
     private dialogWrapperService: DialogWrapperService,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private myDialogService: MyDialogService
   ) {
   }
 
@@ -87,6 +89,10 @@ export class NewDialogComponent implements OnInit {
     const formValue = this.userForm.value;
     this.dialogRef1.close(formValue);
     this.userForm.reset();
+  }
+
+  openUserDialog() {
+    this.myDialogService.open(UserDialogComponent);
   }
 }
 
